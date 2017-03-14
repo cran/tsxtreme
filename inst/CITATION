@@ -1,0 +1,12 @@
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Article",
+	 title = "Bayesian uncertainty management in temporal dependence of extremes",
+	 author = "T.~Lugrin and A.~C.~Davison and J.~A.~Tawn",
+	 year = "2016",
+	 journal = "Extremes",
+	 pages = "491--515",
+	 volume = "19",
+	 url = "http://dx.doi.org/10.1007/s10687-016-0258-0",
+	 note = note)
+	 

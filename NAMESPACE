@@ -1,0 +1,25 @@
+useDynLib(tsxtreme, .registration = TRUE, .fixes = "C_")
+
+export(depfit, thetafit, thetaruns, chifit,
+       dep2fit, theta2fit,
+       dlapl, plapl, qlapl, rlapl,
+       stepfit, is.stepfit,
+       is.bayesfit,
+       bayesparams, is.bayesparams,
+       is.depmeasure)
+importFrom("evd", "qgpd")
+importFrom("MASS", "kde2d")
+importFrom("graphics", "contour", "hist", "lines", "par", "plot")
+import("mvtnorm", "stats")
+
+S3method(summary,stepfit)
+S3method(print,stepfit)
+S3method(plot,stepfit)
+S3method(summary,bayesfit)
+S3method(print,bayesfit)
+S3method(plot,bayesfit)
+S3method(summary,bayesparams)
+S3method(print,bayesparams)
+S3method(summary,depmeasure)
+S3method(print,depmeasure)
+S3method(plot,depmeasure)
