@@ -100,7 +100,7 @@ void ETfit::initialise(){
         bounds(true, curr.a[0], bds); // satisfied only for first lag
         curr.b.push_back(runif(bds[0], bds[1]));
         for(unsigned int d=1; d<nlag; d++){
-            curr.a.push_back(pow(curr.a[0],d+1));
+            curr.a.push_back(pow(curr.a[0],d+1.0));
             curr.b.push_back(curr.b[0]);
         }
         // structure more complex than needed due to spec==none cases
@@ -173,7 +173,7 @@ void ETfit::update_a(const unsigned int &iter){
 
         // adapt (Regional Adaptive Metropolis Algorithm) [-1;-0.9] [-0.9;-0.1] [-0.1;0.1] [0.1;0.9] [0.9;1]
         if(iter<maxadapt and iter%batchsize==0){
-            delta=std::min(0.05,5/(sqrt(iter)));
+            delta=std::min(0.05,5.0/(sqrt((double)iter)));
             for(unsigned int d=0; d<d_max; d++){
                 for(unsigned int reg=0; reg<5; reg++){
                 if(acc_a[d][reg].size()>0){
@@ -218,7 +218,7 @@ void ETfit::update_a(const unsigned int &iter){
                 double accept = std::min(1.0,exp(like_diff - prop_star + prop)) ;
                 if(runif(0,1)<=accept){
                     if(spec==firstOrderMarkov){
-                        for(unsigned int j=0; j<nlag; j++){ curr.a[j]=pow(a_star,j+1); }
+                        for(unsigned int j=0; j<nlag; j++){ curr.a[j]=pow(a_star,j+1.0); }
                     }else{//if spec==none
                         curr.a[d]=a_star;
                     }
@@ -249,7 +249,7 @@ void ETfit::update_b(const unsigned int &iter){
 
         // adapt (Regional Adaptive Metropolis Algorithm) [0;0.1] [0.1;0.9] [0.9;1]
         if(iter<maxadapt and iter%batchsize==0){
-            delta=std::min(0.05,5/(sqrt(iter)));
+            delta=std::min(0.05,5.0/(sqrt((double)iter)));
             for(unsigned int d=0; d<d_max; d++){
                 for(unsigned int reg=0; reg<3; reg++){
                     if(acc_b[d][reg].size()>0){
@@ -319,7 +319,7 @@ double ETfit::loglik_diff(const double &star, const unsigned int &dim, const boo
                      pow(data[i][0], curr.b[d])*curr.sig[curr.ci[i]][d], 1);
             if(alpha){
                 if(spec==none){ a_star = star; }
-                else          { a_star = pow(star, d+1); }
+                else          { a_star = pow(star, d+1.0); }
                 like_star += dnorm(data[i][d+1],
                         a_star*data[i][0] + pow(data[i][0], curr.b[d])*curr.mu[curr.ci[i]][d],
                         pow(data[i][0], curr.b[d])*curr.sig[curr.ci[i]][d], 1);

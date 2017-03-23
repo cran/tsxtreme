@@ -87,7 +87,7 @@ extern "C" {
             for(int c=0; c<(*kred); c++){
                 t_w[c*len + it]   = tr[it].w[c];
                 t_noo[c*len + it] = tr[it].noo[c];
-                for(unsigned int d=0; d<(*nlag); d++){
+                for(int d=0; d<(*nlag); d++){
                     t_mu[d*(*kred)*len + c*len + it]  = tr[it].mu[c][d];
                     t_sig[d*(*kred)*len + c*len + it] = tr[it].sig[c][d];
                 }
