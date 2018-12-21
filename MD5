@@ -1,6 +1,6 @@
-6f1b4f18151373afe6eeb66cebe08c9c *DESCRIPTION
+345ea8543bde3f615a4126e1375cd9c9 *DESCRIPTION
 a2a926f78637dfc590a4a621f589d2f6 *NAMESPACE
-13678d0852140572d2a4a92190d67b8f *NEWS.md
+343b5f1b038861da445152420a225b3e *NEWS.md
 133744e2e0eea027b2d729f9651b8747 *R/bounds.R
 fdd65ec15501526e563edb21710fbd22 *R/classes.R
 a9a0a0a0276fd728a85d062a974fa632 *R/densities.R
@@ -15,7 +15,7 @@ aaa2ad9f3064defb8b59c2c584a13840 *R/htfit.R
 9d6b4494273627d3941534a8ab2049fc *R/margtransf.R
 f1ae3a1e3753b18b2f58a60fc42b744b *R/tictoc.R
 976f36a2cc2f6e90e8668e7cccb6d766 *README.md
-89a96cafdbb558a4782396a40550117e *build/partial.rdb
+e75db298bd88735aaade907df1093c86 *build/partial.rdb
 d541b1662f6318a62ec400f1d9b7ab5d *inst/CITATION
 ecc1f08f061894b1c59af2bcef6927db *man/bayesfit.Rd
 9df45343dc4f029f40d58190fe950f59 *man/bayesparams.Rd
@@ -28,8 +28,8 @@ b9d6a1b5946786a4323c2f996b02324c *man/densities.Rd
 5733b0ff060a0fde4b92769c55598aa4 *man/etfit.Rd
 afb860cc2e087a3989efcb0bd439500d *man/stepfit.Rd
 57b85eb2fad6b2adf085e917bcdb3235 *man/tsxtreme-package.Rd
-0bba7b9dfdb6672bdd47da13db868306 *src/etfit.cpp
-42d7458ab8edd84a66722e66a04a8d4c *src/etfit.h
-f04283afbf47ae6e5d4d4610c9ceeb65 *src/etfit_externC.cpp
-870489795fbc48b8fefd5e995811d8a2 *src/init.c
-d2118f4a85b2c5c07d1ee1e3b738c079 *src/tsxtreme.h
+028bd88eab573e630ded941390f267d9 *src/etfit.cpp
+4939899a32d054974fb121ca3a362521 *src/etfit.h
+572769a76b69cfc5bfc09d180034a85c *src/etfit_externC.cpp
+113c77565de7ea4096e99657b7040cce *src/init.c
+a5cdbed4f6626b3f0343d374125f4a9a *src/tsxtreme.h

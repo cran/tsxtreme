@@ -1,6 +1,6 @@
 /*
  *  tsxtreme : Bayesian Modelling of Extremal Dependence in Time Series
- *  Copyright (C) 2017   Thomas Lugrin
+ *  Copyright (C) 2017-2018   Thomas Lugrin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by

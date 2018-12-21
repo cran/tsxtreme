@@ -1,6 +1,11 @@
 NEWS for package tsxtreme
 =========================
 
+version 0.3.2
+
+* fixed an 'ambiguous name' generating a compilation error on SOLARIS.
+* tidied C++ code for better readability.
+
 version 0.3.1
 
 * fixed 'overloading ambiguities' generating compilation errors on SOLARIS.

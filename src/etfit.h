@@ -1,6 +1,6 @@
 /*
  *  tsxtreme : Bayesian Modelling of Extremal Dependence in Time Series
- *  Copyright (C) 2017   Thomas Lugrin
+ *  Copyright (C) 2017-2018   Thomas Lugrin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -46,6 +46,7 @@ struct ETpar{
 
 //////////////////////////////////////////////////
 // TYPEDEFS
+namespace tsxtreme {
 enum debmode{
     debug,       // print values of parameters at each step
     normal,      // print status regularly & end-of-process summary
@@ -62,6 +63,7 @@ enum algotype{
     conditional, // blocked Gibbs type
     marginal     // R. M. Neal type (NOT IMPLEMENTED YET!)
 };
+}
 
 
 //////////////////////////////////////////////////
@@ -76,14 +78,14 @@ public:
           int *burn, int *thin, int *adapt, int* batchsize,
           double *sd_propa, double *sd_propb,
           double *mu_prior, double *nu_prior, double *eta_prior,
-          debmode const& mode, submodel const& spec);
+          tsxtreme::debmode const& mode, tsxtreme::submodel const& spec);
     ~ETfit();
 
 
     //--------------------//
     // CLASS INTERFACE
 
-    void run(algotype const& type=conditional);
+    void run(tsxtreme::algotype const& type=tsxtreme::conditional);
     std::vector<ETpar> const& getTraces() const;// return by reference for memory efficiency
 
 
@@ -126,8 +128,8 @@ private:
     double sumV;                   // sum_{c=1}^{k-1} log(1-V_c)
     unsigned int nbswaps1;         // counts number of swaps of type 1 (output just through rout)
     unsigned int nbswaps2;         // idem for swaps of type 2
-    const debmode mode;
-    const submodel spec;
+    const tsxtreme::debmode mode;
+    const tsxtreme::submodel spec;
     const double tol;              // when computing bounds on (alpha,beta)
     const double v;                // high quantile, same context
 

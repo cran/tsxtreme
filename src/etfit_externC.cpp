@@ -1,6 +1,6 @@
 /*
  *  tsxtreme : Bayesian Modelling of Extremal Dependence in Time Series
- *  Copyright (C) 2017   Thomas Lugrin
+ *  Copyright (C) 2017-2018   Thomas Lugrin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -37,23 +37,23 @@ extern "C" {
 
         std::clock_t start=std::clock();//start chrono
 
-        debmode modeCpp;
+        tsxtreme::debmode modeCpp;
         switch(*mode){
-        case 0: modeCpp = debug;
+        case 0: modeCpp = tsxtreme::debug;
             break;
-        case 1: modeCpp = normal;
+        case 1: modeCpp = tsxtreme::normal;
             break;
-        case 2: modeCpp = silent;
+        case 2: modeCpp = tsxtreme::silent;
             break;
         default: error("bad integer initialisation value for _mode_ in [et_interface()]");
         }
-        submodel specCpp;
+        tsxtreme::submodel specCpp;
         switch(*spec){
-        case 0: specCpp = univariateMixture;
+        case 0: specCpp = tsxtreme::univariateMixture;
             break;
-        case 1: specCpp = firstOrderMarkov;
+        case 1: specCpp = tsxtreme::firstOrderMarkov;
             break;
-        case 2: specCpp = none;
+        case 2: specCpp = tsxtreme::none;
             break;
         default: error("bad integer initialisation value for _spec_ in [et_interface()]");
         }
@@ -76,29 +76,29 @@ extern "C" {
         //////////////////////////////////////////////////
         // FEED ARGUMENTS FOR R
 
-        unsigned int const len=((*maxit)-(*burn))/(*thin);//actual length after burn-in and thinning
-        unsigned int const d_max=(specCpp==none)?(*nlag):1;
+        unsigned int const len = ((*maxit) - (*burn))/(*thin);//actual length after burn-in and thinning
+        unsigned int const d_max = (specCpp == tsxtreme::none)?(*nlag):1;
 
-        for(unsigned int it=0; it<len; it++){
-            for(int d=0; d<(*nlag); d++){
+        for(unsigned int it = 0; it < len; it++){
+            for(int d = 0; d < (*nlag); d++){
                 t_a[d*len + it] = tr[it].a[d];
                 t_b[d*len + it] = tr[it].b[d];
             }
-            for(int c=0; c<(*kred); c++){
+            for(int c = 0; c < (*kred); c++){
                 t_w[c*len + it]   = tr[it].w[c];
                 t_noo[c*len + it] = tr[it].noo[c];
-                for(int d=0; d<(*nlag); d++){
+                for(int d = 0; d < (*nlag); d++){
                     t_mu[d*(*kred)*len + c*len + it]  = tr[it].mu[c][d];
                     t_sig[d*(*kred)*len + c*len + it] = tr[it].sig[c][d];
                 }
             }
-            for(int i=0; i<(*n); i++){
+            for(int i = 0; i < (*n); i++){
                 t_ci[i*len + it] = tr[it].ci[i];
             }
             t_gam[it] = tr[it].gam;
             t_noc[it] = tr[it].noc;
-            for(unsigned int reg=0; reg<8; reg++){
-                for(unsigned int d=0; d<d_max; d++){
+            for(unsigned int reg = 0; reg < 8; reg++){
+                for(unsigned int d = 0; d < d_max; d++){
                     t_sd[d*8*len+reg*len+it] = tr[it].sd[d][reg];//flip dimensions here
                 }
             }
