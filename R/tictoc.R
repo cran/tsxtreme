@@ -1,24 +1,15 @@
 ## Copyright (C) 2017 Thomas Lugrin
-## tic and toc function, as in Matlab
+## tic and toc functions are provided by tictoc package,
+## but need a wrapper around the latter
 ##################################################
 
 #####################################
 ## CLOCK FUNCTIONS
-tic <- function(gcFirst = TRUE, type=c("elapsed", "user.self", "sys.self"))
+toc <- function(silent = FALSE)
 {
-  type <- match.arg(type)
-  assign(".type", type, envir=baseenv())
-  if(gcFirst) gc(FALSE)
-    tic <- proc.time()[type]         
-    assign(".tic", tic, envir=baseenv())
-    invisible(tic)
-}
-
-toc <- function(silent=FALSE)
-{
-  type <- get(".type", envir=baseenv())
-  toc <- proc.time()[type]
-  tic <- get(".tic", envir=baseenv())
-  if(!silent) print(toc - tic)
-  invisible(toc -tic)
+  tt <- tictoc::toc(quiet = TRUE)#list of 3
+  ttic <- tt$tic
+  ttoc <- tt$toc
+  if(!silent) print(ttoc - ttic)
+  invisible(ttoc - ttic)
 }

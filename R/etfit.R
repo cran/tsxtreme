@@ -66,7 +66,7 @@ etfit <- function(data, R, S, probs, method,
     fit <- prev.fit
   }
   # set up parameters for theta
-  tic()
+  tictoc::tic()
   nit      <- dim(fit$a)[1]
   nlag     <- dim(fit$a)[2]
   mesh.L   <- qexp(1-(1-mesh)*2)
@@ -176,7 +176,7 @@ chifit <- function(ts, lapl=FALSE, nlag=1, R=1000, S=500,
     if(prev.fit$len == 0) stop("prev.fit must contain a proper instance of class 'bayesfit'.")
     fit <- prev.fit
   }
-  tic()
+  tictoc::tic()
   ret <- depmeasure("chi")
   ret$bayesfit <- fit
   ret$probs    <- mesh

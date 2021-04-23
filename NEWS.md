@@ -1,6 +1,10 @@
 NEWS for package tsxtreme
 =========================
 
+version 0.3.3
+
+* fixed an error due to creating a binding in the base environment.
+
 version 0.3.2
 
 * fixed an 'ambiguous name' generating a compilation error on SOLARIS.
