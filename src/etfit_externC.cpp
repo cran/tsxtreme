@@ -45,7 +45,7 @@ extern "C" {
             break;
         case 2: modeCpp = tsxtreme::silent;
             break;
-        default: error("bad integer initialisation value for _mode_ in [et_interface()]");
+        default: Rf_error("bad integer initialisation value for _mode_ in [et_interface()]");
         }
         tsxtreme::submodel specCpp;
         switch(*spec){
@@ -55,7 +55,7 @@ extern "C" {
             break;
         case 2: specCpp = tsxtreme::none;
             break;
-        default: error("bad integer initialisation value for _spec_ in [et_interface()]");
+        default: Rf_error("bad integer initialisation value for _spec_ in [et_interface()]");
         }
 
         ETfit fit(data, n, nlag, k, kred, maxit, burn, thin, adapt, batchsize,

@@ -22,9 +22,9 @@
 #define R_USE_C99_IN_CXX
 
 #include<vector>
+#include<cstdarg>
 #include<R.h>
 #include<Rmath.h>
-#include<cstdarg>
 
 //////////////////////////////////////////////////
 // STRUCTURE TO BE USED WITHIN THE ETFIT CLASS

@@ -124,7 +124,7 @@ void ETfit::initialise(){
         acc_b = std::vector<std::vector<std::vector<double> > >
                 (nlag, std::vector<std::vector<double> >(3));//beta: RAMA, regions [0;0.1;0.9;1]
     }else{
-        error("case %u is not defined as a submodel type in ETfit::initialise(const submodel&)", spec);
+        Rf_error("case %u is not defined as a submodel type in ETfit::initialise(const submodel&)", spec);
     }
 
     curr.mu.clear(); curr.sig.clear();
@@ -243,7 +243,7 @@ void ETfit::update_a(const unsigned int &iter){
             }
         }
     }else{
-        error("case %u is not defined as a submodel type in ETfit::update_a(...)", spec);
+        Rf_error("case %u is not defined as a submodel type in ETfit::update_a(...)", spec);
     }
 }
 
@@ -315,7 +315,7 @@ void ETfit::update_b(const unsigned int &iter){
             }
         }
     }else{
-        error("case %u is not defined as a submodel type in ETfit::update_b(...)",spec);
+        Rf_error("case %u is not defined as a submodel type in ETfit::update_b(...)",spec);
     }
 }
 
@@ -633,9 +633,9 @@ void ETfit::run(const tsxtreme::algotype &type){
             eol_msg(it);
         }
     }else if(type == tsxtreme::marginal){
-        error("in ETfit::run(): Marginal method of R. M. Neal not yet implemented...");
+        Rf_error("in ETfit::run(): Marginal method of R. M. Neal not yet implemented...");
     }else{
-        error("in ETfit::run(): algotype can be conditional or marginal only");
+        Rf_error("in ETfit::run(): algotype can be conditional or marginal only");
     }
 }
 
@@ -726,7 +726,7 @@ void ETfit::bounds(bool fix_a, double const& val, double* bds, const unsigned in
                 testb += eps;
             }while((!cond(val,testb,1,dim) or !cond(val,testb,0,dim)) and testb < 1);
             if(testb < 1) in = testb;
-            else error("Refine grid to get proper results in bounds() for fixed a...\n");
+            else Rf_error("Refine grid to get proper results in bounds() for fixed a...\n");
             out = 0;
             //dichotomy
             do{
@@ -769,7 +769,7 @@ void ETfit::bounds(bool fix_a, double const& val, double* bds, const unsigned in
                 testa += eps;
             }while((!cond(testa, val, 1, dim) or !cond(testa, val, 0, dim)) and testa < 1);
             if(testa < 1) in = testa;
-            else error("Refine grid to get proper results in bounds() for fixed b...\n");
+            else Rf_error("Refine grid to get proper results in bounds() for fixed b...\n");
             out = -1;
             //dichotomy
             do{
@@ -831,7 +831,7 @@ double ETfit::qresid(const double &a, const double &b, const double &p, const un
         else{
             if(p == 0){ ret = fmin2(ret, Z); }
             else if(p == 1){ ret = fmax2(ret, Z); }
-            else{ error("only p=0 or 1 implemented in ETfit::qresid"); }
+            else{ Rf_error("only p=0 or 1 implemented in ETfit::qresid"); }
         }
     }
     return(ret);
@@ -852,7 +852,7 @@ int ETfit::rmult(const std::vector<double> &probs, const double &sum){
             return(c);
         }
     }
-    error("in rmult() (cluster assignment): u = %f, sum = %f, p = %f", u, sum, p);
+    Rf_error("in rmult() (cluster assignment): u = %f, sum = %f, p = %f", u, sum, p);
 }
 
 
@@ -861,7 +861,7 @@ int ETfit::rmult(const std::vector<double> &probs, const double &sum){
 // COMPUTE STATISTICS
 
 double ETfit::mean(const std::vector<double> &x) const{
-    if(x.size() < 1) error("Empty vectors not supported in ETfit::mean.");
+    if(x.size() < 1) Rf_error("Empty vectors not supported in ETfit::mean.");
     double ret = 0;
 
     for(unsigned int i = 0; i < x.size(); i++){ ret += x[i]; }
@@ -869,7 +869,7 @@ double ETfit::mean(const std::vector<double> &x) const{
 }
 
 double ETfit::var(const std::vector<double> &x) const{
-    if(x.size() < 2) error("Empty vectors or singletons not supported in ETfit::var.");
+    if(x.size() < 2) Rf_error("Empty vectors or singletons not supported in ETfit::var.");
     double ret = 0;
     double m = mean(x);
 
@@ -880,8 +880,8 @@ double ETfit::var(const std::vector<double> &x) const{
 }
 
 double ETfit::cov(const std::vector<double> &x, const std::vector<double> &y) const{
-    if(x.size() != y.size()) error("Sizes of vectors in ETfit::cov do not match.");
-    if(x.size() < 2) error("Empty vectors or singletons not supported in ETfit::cov.");
+    if(x.size() != y.size()) Rf_error("Sizes of vectors in ETfit::cov do not match.");
+    if(x.size() < 2) Rf_error("Empty vectors or singletons not supported in ETfit::cov.");
     double ret = 0;
     double mx = mean(x), my = mean(y);
     rout("DEBUG: [ETfit::cov] mean(x)=%.3f, mean(y)=%.3f\n", mx, my);

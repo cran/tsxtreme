@@ -16,10 +16,10 @@
  *  https://www.R-project.org/Licenses/
  */
 
+#include "tsxtreme.h"
 #include <stdlib.h> // for NULL
 #include <Rinternals.h>
 #include <R_ext/Rdynload.h>
-#include "tsxtreme.h"
 
 #define CALLDEF(name, n, argTypes) {#name, (DL_FUNC) &name, n, argTypes}
 
